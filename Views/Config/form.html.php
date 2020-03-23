@@ -62,6 +62,8 @@ $activeTab = $activeTab ?: 'details-container';
     <!-- Enabled\Auth -->
     <div class="tab-pane fade <?php if ('details-container' == $activeTab): echo 'in active'; endif; ?> bdr-w-0" id="details-container">
         <?php echo $view['form']->row($form['isPublished']); ?>
+
+        <?php if ($useAuth): ?>
         <hr />
         <?php echo $view['form']->row($form['apiKeys']); ?>
         <?php if ($useAuthorizationUrl): ?>
@@ -87,6 +89,7 @@ $activeTab = $activeTab ?: 'details-container';
                 </button>
             </div>
         </div>
+        <?php endif; ?>
         <?php endif; ?>
     </div>
     <!-- Enabled\Auth -->

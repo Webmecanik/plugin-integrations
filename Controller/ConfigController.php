@@ -215,7 +215,9 @@ class ConfigController extends AbstractFormController
                 $formHelper->containsErrors($form['featureSettings']['sync']['integration'])
             );
 
-        $hasAuthErrors = $integrationObject instanceof ConfigFormAuthInterface && $formHelper->containsErrors($form['apiKeys']);
+        $useAuth = $integrationObject instanceof ConfigFormAuthInterface;
+
+        $hasAuthErrors = $useAuth && $formHelper->containsErrors($form['apiKeys']);
 
         $useSyncFeatures = $integrationObject instanceof ConfigFormSyncInterface;
 
@@ -235,6 +237,7 @@ class ConfigController extends AbstractFormController
                     'activeTab'           => $this->request->get('activeTab'),
                     'showFeaturesTab'     => $showFeaturesTab,
                     'hasFeatureErrors'    => $hasFeatureErrors,
+                    'useAuth'             => $useAuth,
                     'hasAuthErrors'       => $hasAuthErrors,
                     'useSyncFeatures'     => $useSyncFeatures,
                     'useFeatureSettings'  => $useFeatureSettings,
